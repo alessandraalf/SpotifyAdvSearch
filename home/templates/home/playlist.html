@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>SpotyApp</title>
+    <link rel="stylesheet" href="{% static 'css/playlist.css' %}">
+
+</head>
+<body>
+
+<iframe style="width: 90%; height: 600px; border: 0px solid black" name="spotify" id="spotify" src="https://embed.spotify.com/?uri=spotify:playlist:{{ iframe }}"></iframe>
+</body>
+</html>

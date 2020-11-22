@@ -1,0 +1,132 @@
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    background: #FCFCFC;
+    margin-top: 20px;
+    width: 100%;
+    color: #161616;
+    min-width: 350px;
+}
+
+h1 {
+    font-family: 'Biryani';
+    color: #1DB954;
+    font-size: 65px;
+}
+
+input{
+    background: #FCFCFC;
+}
+
+.container .my-5{
+    margin-top: 10px!important
+}
+
+.btn-responsive {
+    white-space: normal !important;
+    word-wrap: break-word;
+}
+
+#genre-button{
+    text-transform: uppercase;
+}
+
+.btn-success{
+    text-transform: uppercase;
+}
+
+#advsearch{
+    padding: 3% 5% 3% 5%;
+    background: #F8F8F8;
+}
+
+.form-control{
+    width: 100%;
+}
+
+#multi4{
+    width: 100%;
+}
+
+#search{
+    margin: 10px 0% 10px 0%;
+}
+
+#fgenre{
+    margin: 30px 15px 0px 15px;
+    height: 280px;
+    background: #FCFCFC;
+}
+
+#fyear{
+    margin: 30px 15px 0px 15px;
+    height: 280px;
+    background: #FCFCFC;
+}
+
+#keyword{
+    margin: 15px 0 0 0;
+}
+
+.formt {
+    color: #1DB954;
+    font-weight: 500;
+    top: -15px;
+    left: -8px;
+    position: relative;
+    padding: 0px 5px 0px 5px;
+    font-size: 1.1em;
+    background: rgb(252,252,252);
+    background: linear-gradient(0deg, rgba(252,252,252,1) 0%, rgba(248,248,248,1) 100%);
+}
+
+
+.slider-selection {
+    background: cornflowerblue;
+}
+
+.slider.slider-disabled .slider-selection{
+    background: grey;
+}
+
+
+.tooltip .tooltip-main .bs-tooltip-top{
+    background: #1DB954;
+}
+
+#advsearchdiv{
+    padding: 0 3% 3% 3%;
+
+}
+
+#singleyearsearch{
+    display: block;
+}
+
+#multipleyearsearch{
+    display: none;
+}
+
+.switchyear{
+    position: relative;
+    top: -28px;
+    left: 91%;
+}
+
+#yearsdiv{
+    padding: 30px;
+}
+
+#rangeyearsdiv{
+    padding: 5px 30px 30px 30px;
+}
+
+.genretab{
+    padding: 5px 30px 30px 30px;
+}
+
+.customradio{
+    margin-bottom: .5em!important;
+    margin-right: 5px;
+    margin-left: -15px;
+}

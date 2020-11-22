@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>SpotyApp</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Biryani:wght@900&display=swap">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet"/>
+
+
+    <script>
+        $(document).ready(function(){
+            $('#selectgenre').select2();
+        });
+
+        $(document).ready(function(){
+            $('#excludegenre').select2();
+        });
+
+    </script>
+
+
+    <script src="{% static 'js/home.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    </head>
+    <body>
+
+        <!-- TITLE -->
+        <div >
+            <h1 class="text-center">SpotyApp</h1>
+        </div>
+
+        <!-- Advanced Search Widget -->
+        <div class="container my-5" >
+            <div class="form-group">
+                <form id="advsearch">
+                    <div id="advsearchdiv" class="border border-primary rounded mb-0">
+                        <input class="form-control" id="keyword" placeholder="Search keyword">
+
+                        <div class="row">
+
+                            <!-- GENRES -->
+                            <div id="fgenre" class="col-lg border border-primary rounded mb-0">
+                                <label class="formt"><b>Search by Genre</b></label>
+
+                                <br>Select Genres:<br>
+                                <select multiple class="form-control" id="selectgenre" style="width: 100%;">
+                                    {% for g in g_list %}
+                                    <option>{{ g.name }}</option>
+                                    {% endfor %}
+                                </select>
+
+                                <br><br>
+                                <input type="checkbox" onchange="showExcludeGenre()">Exclude Genres</input>
+                                <div id="excludegenrediv" style="display: none">
+                                    <select multiple class="form-control" id="excludegenre" style="width: 100%;">
+                                        {% for g in g_list %}
+                                        <option>{{ g.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <!-- YEARS -->
+                            <div id="fyear" class="col-lg border border-primary rounded mb-0">
+                                <label class="formt"><b>Search by Year</b></label>
+
+                                <!-- Default switch -->
+                                <div class="custom-control custom-switch switchyear">
+                                    <input type="checkbox" class="custom-control-input" id="customSwitches" onclick="disableYear()">
+                                    <label class="custom-control-label" for="customSwitches"> </label>
+                                </div>
+
+
+                                <ul class="nav nav-pills flex-column flex-sm-row navbaryear" id="pills-tab" role="tablist">
+                                    <li class="nav-item flex-sm-fill text-sm-center">
+                                        <a class="nav-link active w-100" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Select Year</a>
+                                    </li>
+                                    <li class="nav-item flex-sm-fill text-sm-center">
+                                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Select Year Range</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                        <!-- SINGLE YEARS -->
+                                        <div class="yearstab">
+                                            <input id="singleyears" type="text" class="datepicker form-control" placeholder="Select year..." />
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                        <!-- RANGE YEARS -->
+                                        <div class="yearstab2">
+                                            <br><input id="yearslider" type="text" class="span2" value="" data-slider-min="1900" data-slider-max="2020" data-slider-step="1" data-slider-value="[1990,2010]" style="width: 100%; align-content: center"/>
+                                            <br><br>
+                                            <input type="checkbox" onchange="showExcludeYear()">Exclude year from search</input>
+                                            <input id="yearstoexclude" type="text" class="datepicker form-control" placeholder="Select year..." style="display: none"/>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                        <div class="col text-center px-4">
+                            <button class="btn btn-primary" id="search">SEARCH</button>
+                        </div>
+                    </div>
+                </form>
+            <a class="btn btn-primary btn-lg btn-block px-2" href="allgenres" role="button"> All genres </a>
+
+        </div>
+        </div>
+
+        <script>
+            var slider = new Slider('#yearslider', {});
+
+            //per prender id nome genrere fare for sui selected
+           // $("#selectgenre").select2('data')[0].id;
+            //for (let i = 0; i < $("#selectgenre").select2('data').length; i++) {
+            //$("#selectgenre").select2('data')[i].id;}
+
+            $(".datepicker").datepicker({
+                format: "yyyy",
+                viewMode: "centuries",
+                minViewMode: "decade",
+                maxViewMode: "centuries",
+                orientation: "bottom",
+                autoclose: true,
+                multidate: true,
+                startDate: '-120y',
+                endDate: '+0y',
+                startView: "century"
+            });
+
+
+            disableYear();
+            
+
+
+        </script>
+
+
+    </body>
+</html>

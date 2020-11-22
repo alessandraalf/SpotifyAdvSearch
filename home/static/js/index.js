@@ -29,7 +29,7 @@ function searchS(){
         // selectedgenres
         for (let i = 0; i < $("#excludegenre").select2('data').length; i++) {
             console.log($("#excludegenre").select2('data')[i].id);
-            searchString += 'NOT genre:"' + $("#excludegenre").select2('data')[i].id;
+            searchString += ' NOT genre:"' + $("#excludegenre").select2('data')[i].id +'"';
         }
     }
 

@@ -3,7 +3,7 @@ function searchS(){
 
     let keywordSB = document.getElementById("keyword");
     if(keywordSB.value!==""){
-        searchString += '"' + keywordSB.value + '"';
+        searchString += '%22' + keywordSB.value + '%22';
     }
 
     let excludegenre = document.getElementsByName("excludegenre")[0].checked;
@@ -12,14 +12,14 @@ function searchS(){
     // GENRES
 
     // selectedgenres
-    if(searchString!==""){
-            searchString += " AND ";
+    if(searchString!=="" && ($("#selectgenre").select2('data').length > 0 || !searchYear)){
+            searchString += "%20AND%20";
         }
     for (let i = 0; i < $("#selectgenre").select2('data').length; i++) {
         console.log($("#selectgenre").select2('data')[i].id);
-        searchString += 'genre:"' + $("#selectgenre").select2('data')[i].id + '"';
+        searchString += 'genre%3A%22' + $("#selectgenre").select2('data')[i].id + '%22';
         if(i!==$("#selectgenre").select2('data').length - 1){
-            searchString += " AND ";
+            searchString += "%20AND%20";
         }
     }
 
@@ -29,7 +29,7 @@ function searchS(){
         // selectedgenres
         for (let i = 0; i < $("#excludegenre").select2('data').length; i++) {
             console.log($("#excludegenre").select2('data')[i].id);
-            searchString += ' NOT genre:"' + $("#excludegenre").select2('data')[i].id +'"';
+            searchString += '%20NOT%20genre%3A%22' + $("#excludegenre").select2('data')[i].id +'%22';
         }
     }
 
@@ -42,24 +42,24 @@ function searchS(){
             console.log("cerca anno");
             let year = document.getElementById("singleyears").value;
             console.log(year);
-            searchString += " AND year:"+year;
+            searchString += "%20AND%20year%3A"+year;
         } else {
             console.log("cerca range");
             let range = document.getElementById("yearslider").value;
             let rangeArr = range.split(',');
-            searchString += " AND year:"+rangeArr[0]+"-"+rangeArr[1];
+            searchString += "%20AND%20year%3A"+rangeArr[0]+"-"+rangeArr[1];
             console.log(range);
 
             let excludeyear = document.getElementsByName("excludeyear")[0].checked;
             if(excludeyear){
                 console.log("escludi anno attivo");
                 let yeartoexclude = document.getElementById("yearstoexclude").value;
-                searchString += " NOT year:"+yeartoexclude;
+                searchString += "%20NOT%20year%3A"+yeartoexclude;
             }
         }
     }
 
 
     console.log(searchString);
-    window.open("spotify:app/search/"+searchString);
+    window.open("spotify://search/"+searchString);
 }

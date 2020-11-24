@@ -12,7 +12,7 @@ function searchS(){
     // GENRES
 
     // selectedgenres
-    if(searchString!=="" && ($("#selectgenre").select2('data').length > 0 || !searchYear)){
+    if(searchString!=="" && $("#selectgenre").select2('data').length > 0){
             searchString += "%20AND%20";
         }
     for (let i = 0; i < $("#selectgenre").select2('data').length; i++) {
@@ -22,7 +22,6 @@ function searchS(){
             searchString += "%20AND%20";
         }
     }
-
 
     if(excludegenre){
         console.log("Escludi genere attivo");
@@ -38,16 +37,24 @@ function searchS(){
     if(!searchYear){
         console.log("search year attivo");
         let searchByYear = document.getElementById("radio4").checked;
-        if(searchByYear){
-            console.log("cerca anno");
-            let year = document.getElementById("singleyears").value;
-            console.log(year);
-            searchString += "%20AND%20year%3A"+year;
+        if(searchByYear) {
+            if(document.getElementById("singleyears").value !== ""){
+                console.log("cerca anno");
+                if(searchString!==""){
+                    searchString += "%20AND%20";
+                }
+                let year = document.getElementById("singleyears").value;
+                console.log(year);
+                searchString += "year%3A" + year;
+            }
         } else {
             console.log("cerca range");
+            if(searchString!==""){
+                    searchString += "%20AND%20";
+                }
             let range = document.getElementById("yearslider").value;
             let rangeArr = range.split(',');
-            searchString += "%20AND%20year%3A"+rangeArr[0]+"-"+rangeArr[1];
+            searchString += "year%3A"+rangeArr[0]+"-"+rangeArr[1];
             console.log(range);
 
             let excludeyear = document.getElementsByName("excludeyear")[0].checked;
